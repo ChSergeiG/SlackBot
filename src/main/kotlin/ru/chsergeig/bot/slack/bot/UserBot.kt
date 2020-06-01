@@ -15,6 +15,7 @@ import ru.chsergeig.bot.slack.Utils.Companion.safeGetValueFromEvOrCli
 open class UserBot : Bot() {
 
     companion object {
+        @JvmStatic
         private val LOG: Logger = LoggerFactory.getLogger(UserBot::class.java)
     }
 

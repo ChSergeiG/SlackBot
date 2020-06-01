@@ -4,6 +4,8 @@ class Utils {
 
     companion object {
 
+        @JvmStatic   val JOB_KEY: String = "JOB_KEY"
+
         @JvmStatic
         fun safeGetValueFromEvOrCli(args: Array<String>, prefix: String, valueDef: String, envVar: String?): String {
             val valueFromEnv: String? = System.getenv()[envVar]
@@ -18,6 +20,12 @@ class Utils {
             }
         }
 
+        @JvmStatic
+        fun getJenkinsArguments(text: String?): Map<String, String> {
+            val result :MutableMap<String, String> = HashMap()
+            result[JOB_KEY] = ""
+            return result
+        }
 
     }
 

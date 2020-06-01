@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct
 open class WebHookBot {
 
     companion object {
+        @JvmStatic
         private val LOG: Logger = LoggerFactory.getLogger(WebHookBot::class.java)
     }
 

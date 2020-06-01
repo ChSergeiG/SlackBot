@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ru.chsergeig.bot.slack.Utils
+import ru.chsergeig.bot.slack.jenkins.JenkinsCommand
+import ru.chsergeig.bot.slack.jenkins.JenkinsWrapper
 
 @RestController
 open class SlashCommandBot {
 
     companion object {
+        @JvmStatic
         private val LOG: Logger = LoggerFactory.getLogger(SlashCommandBot::class.java)
     }
 
@@ -40,14 +43,12 @@ open class SlashCommandBot {
         @RequestParam("text") text: String?,
         @RequestParam("response_url") responseUrl: String?
     ): RichMessage? {
-        // validate token
-        LOG.info("ENV token: '{}'", this.token)
-        LOG.info("REQ token: '{}'", token)
-
-
         if (token != this.token) {
-            return RichMessage("Sorry! You're not lucky enough to use our slack command.")
+            LOG.error("Invalid token")
+            return RichMessage("Whoa, invalid token.")
         }
+
+        JenkinsWrapper.execute(JenkinsCommand.of(command!!, text), Utils.getJenkinsArguments(text))
 
         val richMessage = RichMessage("The is Slash Commander!")
         richMessage.responseType = "in_channel"

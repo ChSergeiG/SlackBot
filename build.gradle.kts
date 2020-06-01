@@ -15,7 +15,7 @@ plugins {
 }
 
 group = "ru.chsergeig.bot"
-version = "1.0.0a"
+version = "1.0.0b"
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
@@ -24,7 +24,8 @@ dependencies {
 
     implementation(group = "me.ramswaroop.jbot", name = "jbot", version = "4.1.0")
     implementation(group = "me.ramswaroop.jbot", name = "jbot-core", version = "3.0.0")
-    implementation(group = "com.cdancy", name = "jenkins-rest", version = "0.0.27")
+//    implementation(group = "com.cdancy", name = "jenkins-rest", version = "0.0.27")
+    implementation(group = "com.offbytwo.jenkins", name = "jenkins-client", version = "0.3.8")
 
 }
 
